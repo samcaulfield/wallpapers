@@ -9,12 +9,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define STB_IMAGE_WRITE_IMPLEMENTATION
+#include "stb_image_write.h"
+
 #define IMHEIGHT 1024
 #define IMWIDTH  1280
 
 // The image format is interleaved RGB, 1 Bpp
 #define NUM_CHANNELS 3
 #define IMAGE_SIZE_BYTES (NUM_CHANNELS * IMHEIGHT * IMWIDTH)
+#define IMSTRIDE (IMWIDTH * NUM_CHANNELS)
 
 int main(int argc, char **argv)
 {
@@ -42,11 +46,7 @@ int main(int argc, char **argv)
 		}
 	}
 
-	char cmd[200];
-	snprintf(cmd, 200,
-		"convert -depth 8 -size %dx%d rgb:wallpaper wallpaper.png",
-		IMWIDTH, IMHEIGHT);
-	system(cmd);
+	stbi_write_png("ghostfade.png", IMWIDTH, IMHEIGHT, 3, pixels, IMSTRIDE);
 
 	return EXIT_SUCCESS;
 }
