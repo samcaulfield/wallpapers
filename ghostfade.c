@@ -42,9 +42,6 @@ int main(int argc, char **argv)
 		}
 	}
 
-	FILE *f = fopen("wallpaper", "w+");
-	fwrite(pixels, 1, sizeof(pixels), f);
-
 	char cmd[200];
 	snprintf(cmd, 200,
 		"convert -depth 8 -size %dx%d rgb:wallpaper wallpaper.png",
