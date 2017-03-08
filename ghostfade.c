@@ -31,16 +31,18 @@ int main(int argc, char **argv)
 
 			// Scale down the red and blue channels to achieve a
 			// primarily green hue.
-#define RB_SCALE (0.45454545f)
+#define B_SCALE (0.80f) // Blue channel scale
+#define D_SCALE (0.50f) // Darkness scale
+#define R_SCALE (0.55f) // Red channel scale
 
 			// Create the linear fade based on y magnitude.
 			const float pixval = UCHAR_MAX * y / (float) IMHEIGHT;
 
-			pixels[pixel]     = (uint8_t) (pixval * RB_SCALE);
+			const float pixvalDark = pixval * D_SCALE;
 
-			pixels[pixel + 1] = (uint8_t) pixval;
-
-			pixels[pixel + 2] = pixels[pixel];
+			pixels[pixel]     = (uint8_t) (pixvalDark * R_SCALE);
+			pixels[pixel + 1] = (uint8_t) (pixvalDark);
+			pixels[pixel + 2] = (uint8_t) (pixvalDark * B_SCALE);
 
 			pixel += NUM_CHANNELS;
 		}
