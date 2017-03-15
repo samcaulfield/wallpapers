@@ -6,7 +6,6 @@
 
 #include <limits.h>
 #include <stdint.h>
-#include <stdio.h>
 #include <stdlib.h>
 
 #define STB_IMAGE_WRITE_IMPLEMENTATION
@@ -15,7 +14,7 @@
 #define IMHEIGHT 1024
 #define IMWIDTH  1280
 
-// The image format is interleaved RGB, 1 Bpp
+// The image format is interleaved RGB
 #define NUM_CHANNELS 3
 #define IMAGE_SIZE_BYTES (NUM_CHANNELS * IMHEIGHT * IMWIDTH)
 #define IMSTRIDE (IMWIDTH * NUM_CHANNELS)
